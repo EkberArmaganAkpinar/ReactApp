@@ -1,7 +1,8 @@
-import React,{useState} from 'react'
-
-const Search =({search,setAlert,showClear,clearUser})=> {
-   
+import React,{useContext, useState} from 'react'
+import GithubContext from '../context/githubContext'
+const Search =({setAlert,showClear,clearUser})=> {
+    
+    const githubContext=useContext(GithubContext)
 
         const[keyword,setKeyword]=useState('')
        
@@ -19,7 +20,7 @@ const Search =({search,setAlert,showClear,clearUser})=> {
         }
         else{
             
-            search(keyword)
+            githubContext.searchUser(keyword)
             setKeyword('')
         }
 

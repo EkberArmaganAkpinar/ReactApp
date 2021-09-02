@@ -8,6 +8,7 @@ import Alert from './components/Alert'
 import About from './components/About'
 import UserDetails from './components/UserDetails'
 import UserRepos from './components/UserRepos'
+import Githubstate from './context/githubState'
 
 
 const App =()=>{
@@ -21,18 +22,7 @@ const App =()=>{
       const[userrepo,setUserRepo]=useState([])
 
 
-  const searchUser = (keyword) => {
-     setLoading(true)
-    setTimeout(() => {
-      axios
-        .get(`https://api.github.com/search/users?q=${keyword}`)
-        .then(res => {
-           setUsers(res.data.items)
-           setLoading(false)
-        })
-    }, 1000);
-
-  }
+  
   const clearUser = () => {
    setUsers([])
 
@@ -102,15 +92,17 @@ const getUserName=(username)=>{
 
 
     return (
-      <BrowserRouter>
+      <Githubstate>
+         <BrowserRouter>
+
         <Navbar />
         <Alert alert={alert} />
         <Switch>
           <Route exact path="/" render={props => (
 
             <>
-              <Search setAlert={showAlert} clearUser={clearUser} search={searchUser} showClear={users.length > 0 ? true : false} />
-              <Users users={users} loading={loading} />
+              <Search setAlert={showAlert} clearUser={clearUser} showClear={users.length > 0 ? true : false} />
+              <Users />
             </>
           )
 
@@ -136,6 +128,7 @@ const getUserName=(username)=>{
 
         </Switch>
       </BrowserRouter>
+      </Githubstate>
     )
   
 }
