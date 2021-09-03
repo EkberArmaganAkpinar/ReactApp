@@ -2,7 +2,7 @@ import { useReducer } from "react"
 import GithubReducer from './githubReducer'
 import GithubContext from "./githubContext"
 import axios from 'axios'
-import { stat } from "fs"
+
 const Githubstate =(props)=>{
     const initialState={
         users:[],
@@ -28,6 +28,28 @@ const Githubstate =(props)=>{
        }, 1000);
    
      }
+     const getUser = (username) => {
+        setLoading()
+        setTimeout(() => {
+          axios
+            .get(`https://api.github.com/users/${username}`)
+            .then(res => {
+                 dispatch({
+                     type:"GET_USER",
+                     payload:res.data
+                 })
+            
+            })
+        }, 1000);
+    
+    
+      }
+     const clearUser = () => {
+        dispatch({
+            type:"CLEAR_USERS"
+        })
+     
+       }
      const setLoading =()=>{
          dispatch({type:"SET_LOADING"})
      }
@@ -39,7 +61,9 @@ const Githubstate =(props)=>{
                          repos:state.repos,
                          loading:state.loading,
                          userrepo:state.userrepo,
-                         searchUser
+                         searchUser,
+                         clearUser,
+                         getUser
 
                      }}>
                     {props.children}

@@ -1,8 +1,8 @@
 import React,{useContext, useState} from 'react'
 import GithubContext from '../context/githubContext'
-const Search =({setAlert,showClear,clearUser})=> {
+const Search =({setAlert})=> {
     
-    const githubContext=useContext(GithubContext)
+    const{searchUser,clearUser,users}=useContext(GithubContext)
 
         const[keyword,setKeyword]=useState('')
        
@@ -20,7 +20,7 @@ const Search =({setAlert,showClear,clearUser})=> {
         }
         else{
             
-            githubContext.searchUser(keyword)
+            searchUser(keyword)
             setKeyword('')
         }
 
@@ -39,8 +39,8 @@ const Search =({setAlert,showClear,clearUser})=> {
                     </div>
                 </form>
                 {
-                    showClear&&
-                    <button onClick={clearUser} className="btn btn-secondary btn-sm btn-block mt-2">Clear Results</button>
+                     users.length ?
+                    <button onClick={clearUser} className="btn btn-secondary btn-sm btn-block mt-2">Clear Results</button> :null
 
                 }
 

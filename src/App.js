@@ -12,8 +12,7 @@ import Githubstate from './context/githubState'
 
 
 const App =()=>{
-      const[users,setUsers]=useState([])
-      const[user,setUser]=useState({})
+    
       const[loading,setLoading]=useState(false)
       const[alert,setAlert]=useState(null)
       const[repos,setRepos]=useState([])
@@ -23,25 +22,9 @@ const App =()=>{
 
 
   
-  const clearUser = () => {
-   setUsers([])
+ 
 
-  }
-
-  const getUser = (username) => {
-    setLoading(true)
-    setTimeout(() => {
-      axios
-        .get(`https://api.github.com/users/${username}`)
-        .then(res => {
-          setUser(res.data)
-          setLoading(false)
-        
-        })
-    }, 1000);
-
-
-  }
+  
   const getUserRepos = (username) => {
        setLoading(true)
     setTimeout(() => {
@@ -101,7 +84,7 @@ const getUserName=(username)=>{
           <Route exact path="/" render={props => (
 
             <>
-              <Search setAlert={showAlert} clearUser={clearUser} showClear={users.length > 0 ? true : false} />
+              <Search setAlert={showAlert}  />
               <Users />
             </>
           )
@@ -112,7 +95,7 @@ const getUserName=(username)=>{
 
             <UserDetails getUserRepos={getUserRepos} getUserName={getUserName} 
             getRepoFullName={getRepoFullName} 
-            {...props} getUser={getUser} user={user} repos={repos} loading={loading} />
+            {...props}  repos={repos}  />
 
 
           )} />

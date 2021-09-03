@@ -1,7 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Loading } from './Loading'
 import Repos from './Repos';
-const UserDetails =({getUser,getUserRepos,getUserName,match,loading,repos,user,getRepoFullName })=> {
+import GithubContext from '../context/githubContext';
+const UserDetails =({getUserRepos,getUserName,match,repos,getRepoFullName })=> {
+
+    const{getUser,loading,user}=useContext(GithubContext)
 
    useEffect(()=>{
     getUser(match.params.login)
