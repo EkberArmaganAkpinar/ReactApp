@@ -13,31 +13,14 @@ import Githubstate from './context/githubState'
 
 const App =()=>{
     
-      const[loading,setLoading]=useState(false)
+    
       const[alert,setAlert]=useState(null)
-      const[repos,setRepos]=useState([])
       const[repo_name,setRepoName]=useState(null)
       const[user_name,setUserName]=useState(null)
       const[userrepo,setUserRepo]=useState([])
-
-
-  
- 
+      const[loading,setLoading]=useState(false)
 
   
-  const getUserRepos = (username) => {
-       setLoading(true)
-    setTimeout(() => {
-      axios
-        .get(`https://api.github.com/users/${username}/repos`)
-        .then(res => {
-          setRepos(res.data)
-          setLoading(false)
-        })
-    }, 1000);
-
-
-  }
  
 
   
@@ -93,9 +76,9 @@ const getUserName=(username)=>{
           <Route path="/about" component={About} />
           <Route exact path="/user/:login" render={props => (
 
-            <UserDetails getUserRepos={getUserRepos} getUserName={getUserName} 
+            <UserDetails  getUserName={getUserName} 
             getRepoFullName={getRepoFullName} 
-            {...props}  repos={repos}  />
+            {...props}   />
 
 
           )} />
