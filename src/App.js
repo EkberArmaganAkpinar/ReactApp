@@ -6,6 +6,7 @@ import axios from 'axios'
 import Search from './components/Search'
 import Alert from './components/Alert'
 import About from './components/About'
+import NotFound from './components/NotFound'
 import UserDetails from './components/UserDetails'
 import UserRepos from './components/UserRepos'
 import Githubstate from './context/githubState'
@@ -82,6 +83,7 @@ const getUserName=(username)=>{
 
 
           )} />
+          <Route component={NotFound}/>
 
 
 
