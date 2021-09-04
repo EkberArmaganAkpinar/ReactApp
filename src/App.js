@@ -9,12 +9,12 @@ import About from './components/About'
 import UserDetails from './components/UserDetails'
 import UserRepos from './components/UserRepos'
 import Githubstate from './context/githubState'
-
+import Alertstate from './context/alert/alertState'
 
 const App =()=>{
     
     
-      const[alert,setAlert]=useState(null)
+   
       const[repo_name,setRepoName]=useState(null)
       const[user_name,setUserName]=useState(null)
       const[userrepo,setUserRepo]=useState([])
@@ -45,29 +45,22 @@ const getUserName=(username)=>{
 }
 
 
-  const showAlert = (msg, type) => {
-
-    setAlert({ msg, type } )
-    
-
-    setTimeout(() => {
-      setAlert({alert:null})
-    }, 3000);
-  }
+  
 
 
 
     return (
       <Githubstate>
+        <Alertstate>
          <BrowserRouter>
 
         <Navbar />
-        <Alert alert={alert} />
+        <Alert />
         <Switch>
           <Route exact path="/" render={props => (
 
             <>
-              <Search setAlert={showAlert}  />
+              <Search />
               <Users />
             </>
           )
@@ -94,6 +87,7 @@ const getUserName=(username)=>{
 
         </Switch>
       </BrowserRouter>
+      </Alertstate>
       </Githubstate>
     )
   
