@@ -9,7 +9,8 @@ const Githubstate =(props)=>{
         user:{},
         repos:[],
         loading:false,
-        userrepo:[]
+        userrepo:[],
+        user_name:""
     }
 
     const [state,dispatch]=useReducer(GithubReducer,initialState)
@@ -44,6 +45,31 @@ const Githubstate =(props)=>{
     
     
       }
+      const getRepoFullName=(uname,reponame)=>{
+  
+        
+        setLoading()    //https://api.github.com/repos/sadikturan/angular-dersleri
+        setTimeout(() => {
+          axios
+            .get(`https://api.github.com/repos/${uname}/${reponame}`)
+            .then(res => {
+                dispatch({
+                  type:"FULL_NAME",
+                  payload:res.data
+                })
+            
+            })
+        }, 1000);
+        
+    }
+      const getUserName=(username)=>{
+         dispatch({
+           type:"GET_USER_NAME",
+           payload:username
+         })
+         console.log("username alindi")
+        
+      }      
     const getUserRepos = (username) => {
         setLoading()
      setTimeout(() => {
@@ -76,10 +102,13 @@ const Githubstate =(props)=>{
                          repos:state.repos,
                          loading:state.loading,
                          userrepo:state.userrepo,
+                         user_name:state.user_name,
                          searchUser,
                          clearUser,
                          getUser,
-                         getUserRepos
+                         getUserRepos,
+                         getUserName,
+                         getRepoFullName
 
                      }}>
                     {props.children}

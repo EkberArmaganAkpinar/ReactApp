@@ -8,6 +8,17 @@ const githubReducer=(state,action)=>{
                users:action.payload,
                loading:false
            }
+           case "GET_USER_NAME":
+               return{
+                   ...state,
+                   user_name:action.payload
+                 
+               }
+            case "FULL_NAME":
+                   return{
+                       ...state,
+                       userrepo:action.payload
+                   }
            case "SET_LOADING":
                return{
                    ...state,

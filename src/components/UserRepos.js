@@ -1,25 +1,25 @@
-import React, { Component } from 'react'
+import React, { Component,useContext } from 'react'
+import GithubContext from '../context/githubContext'
+ const UserRepos=(props)=> {
 
-export class UserRepos extends Component {
-
-    
-    render() {
+    const{userrepo}=useContext(GithubContext)
+   
         return (
             <div className="container mt-3">
 
                 <li className="list-group-item">
                     <i className="far fa-dot-circle"></i>
-                    <a href={this.props.userrepo.html_url}>Project Path:{this.props.repo_name}</a>
+                    <a href={userrepo.html_url}>Project Path:{props.repo_name}</a>
                 </li>
                 <li className="list-group-item">
                 <i className="far fa-dot-circle"></i>
-                    Archive Path:{this.props.userrepo.archive_url}</li>
+                    Archive Path:{userrepo.archive_url}</li>
                     <li className="list-group-item">
                 <i className="far fa-dot-circle"></i>
-                    Full Name:{this.props.userrepo.full_name}</li>
+                    Full Name:{userrepo.full_name}</li>
             </div>
         )
-    }
+    
 }
 
 export default UserRepos

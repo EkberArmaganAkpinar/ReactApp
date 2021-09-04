@@ -12,23 +12,24 @@
     )
 }
 export default Repo;*/
-import React, { Component } from 'react'
+import React, { Component ,useContext} from 'react'
 import { Link } from 'react-router-dom'
-export class Repo extends Component {
-  
-    onClick=()=>{
-     
-        this.props.getRepoFullName(this.props.repo.name)
+import GithubContext from '../context/githubContext';
+const Repo =(props)=>{
+    const{user,getRepoFullName}=useContext(GithubContext)
+   const onClick=()=>{
+       
+     getRepoFullName(user.login,props.repo.name)
     }
-    render() {
+   
         return (
             <li className="list-group-item">
                 <i className="far fa-dot-circle"></i>
-                <Link to={`/user/${this.props.repo.full_name}`} onClick={this.onClick} > {this.props.repo.name}</Link>
+                <Link to={`/user/${props.repo.full_name}`} onClick={onClick} > {props.repo.name}</Link>
                
             </li>
         )
-    }
+    
 }
 
 export default Repo

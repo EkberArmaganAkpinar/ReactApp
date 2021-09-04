@@ -25,28 +25,7 @@ const App =()=>{
  
 
   
-const getRepoFullName=(reponame)=>{
-  
-    setRepoName(reponame)
-    setLoading(true)    //https://api.github.com/repos/sadikturan/angular-dersleri
-    setTimeout(() => {
-      axios
-        .get(`https://api.github.com/repos/${user_name}/${reponame}`)
-        .then(res => {
-             setUserRepo(res.data)
-             setLoading(false)
-        
-        })
-    }, 1000);
-    
-}
-const getUserName=(username)=>{
-  setUserName(username)
 
-}
-
-
-  
 
 
 
@@ -70,8 +49,8 @@ const getUserName=(username)=>{
           <Route path="/about" component={About} />
           <Route exact path="/user/:login" render={props => (
 
-            <UserDetails  getUserName={getUserName} 
-            getRepoFullName={getRepoFullName} 
+            <UserDetails 
+            
             {...props}   />
 
 
@@ -79,7 +58,7 @@ const getUserName=(username)=>{
 
           <Route path="/user/:full_name" render={props => (
 
-            <UserRepos repo_name={repo_name} userrepo={userrepo} getRepoFullName={getRepoFullName} {...props}/>
+            <UserRepos repo_name={repo_name} userrepo={userrepo}  {...props}/>
 
 
           )} />
