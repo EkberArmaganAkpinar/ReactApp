@@ -1,9 +1,12 @@
 import React, { Component,useContext } from 'react'
 import GithubContext from '../context/githubContext'
+import { Loading } from './Loading'
  const UserRepos=(props)=> {
 
-    const{userrepo}=useContext(GithubContext)
-   
+    const{userrepo,loading}=useContext(GithubContext)
+      
+    if (loading)
+     return <Loading />
         return (
             <div className="container mt-3">
 
