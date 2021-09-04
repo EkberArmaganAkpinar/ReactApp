@@ -69,7 +69,7 @@ const UserDetails =({match,getRepoFullName })=> {
 
                            </div>
                            <ul className="list-group list-group-flush">
-                               <Repos repos={repos} getRepoFullName={getRepoFullName}/>
+                               <Repos repos={repos} />
                            </ul>
                      
                        </div>

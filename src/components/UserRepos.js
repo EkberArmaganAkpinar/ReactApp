@@ -9,7 +9,7 @@ import GithubContext from '../context/githubContext'
 
                 <li className="list-group-item">
                     <i className="far fa-dot-circle"></i>
-                    <a href={userrepo.html_url}>Project Path:{props.repo_name}</a>
+                    <a href={userrepo.html_url}>Project Path:{userrepo.name}</a>
                 </li>
                 <li className="list-group-item">
                 <i className="far fa-dot-circle"></i>

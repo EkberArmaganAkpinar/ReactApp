@@ -2,7 +2,6 @@ import React, { useState} from 'react'
 import { BrowserRouter, Route, Switch, Link, NavLink } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Users from './components/Users'
-import axios from 'axios'
 import Search from './components/Search'
 import Alert from './components/Alert'
 import About from './components/About'
@@ -14,21 +13,6 @@ import Alertstate from './context/alert/alertState'
 
 const App =()=>{
     
-    
-   
-      const[repo_name,setRepoName]=useState(null)
-      const[user_name,setUserName]=useState(null)
-      const[userrepo,setUserRepo]=useState([])
-      const[loading,setLoading]=useState(false)
-
-  
- 
-
-  
-
-
-
-
     return (
       <Githubstate>
         <Alertstate>
@@ -58,7 +42,7 @@ const App =()=>{
 
           <Route path="/user/:full_name" render={props => (
 
-            <UserRepos repo_name={repo_name} userrepo={userrepo}  {...props}/>
+            <UserRepos/>
 
 
           )} />
